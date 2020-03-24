@@ -1,13 +1,9 @@
 {
   "appId": "br.com.gotn.ionic5capacitortest",
-  "appName": "Ionic5CapacitorTest2",
+  "appName": "Ionic 5 + Capacitor test",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
   "cordova": {},
-  "linuxAndroidStudioPath": "/snap/android-studio/current/android-studio/bin/studio.sh",
-  "server": {
-    "url": "http://192.168.1.36:8100",
-    "cleartext": true
-  }
+  "linuxAndroidStudioPath": "/snap/android-studio/current/android-studio/bin/studio.sh"
 }
