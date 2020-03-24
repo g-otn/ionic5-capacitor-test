@@ -14,6 +14,7 @@ export class FolderPage implements OnInit {
   public imgsrc: string;
   public result: string;
   public err: string;
+  public deviceinfo: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +27,9 @@ export class FolderPage implements OnInit {
   ngOnInit() {
     console.log(this.activatedRoute);
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+    Plugins.Device.getInfo().then(deviceInfo => {
+      this.deviceinfo = this.json(deviceInfo);
+    })
   }
 
   capacitorGeolocation() {
@@ -44,7 +48,7 @@ export class FolderPage implements OnInit {
   }
 
   capacitorSplashScreen() {
-    Plugins.SplashScreen.show({ autoHide: true });
+    Plugins.SplashScreen.show({ autoHide: true, showDuration: 1000 });
   }
 
   capacitorPhotoPrompt() {
@@ -93,7 +97,7 @@ export class FolderPage implements OnInit {
         })
           .then(value => {
             this.imgsrc = value.dataUrl
-          })
+          });
       })
       .catch(reason => this.err = this.json(reason));
   }
@@ -114,7 +118,7 @@ export class FolderPage implements OnInit {
   }
 
   cordovaCallNumber(bypass = true) {
-    this.callNumber.callNumber('+5511900000000', bypass);
+    this.callNumber.callNumber('+5513900000000', bypass);
   }
 
   angularToast() {
@@ -137,7 +141,8 @@ export class FolderPage implements OnInit {
   }
 
   json(value) {
-    return JSON.stringify(value, null, ' ');
+    console.info(value);
+    return JSON.stringify(typeof value !== 'object' ? String(value) : value, null, '   ');
   }
 
 }

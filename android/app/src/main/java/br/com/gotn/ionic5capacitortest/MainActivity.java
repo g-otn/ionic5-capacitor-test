@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package br.com.gotn.ionic5capacitortest;
 
 import android.os.Bundle;
 

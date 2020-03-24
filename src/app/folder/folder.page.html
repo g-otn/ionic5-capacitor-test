@@ -7,38 +7,73 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense" translucent>
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <section>
-  <pre>
-  result
-  </pre>
-  <pre style="color: red">
-  err
-  </pre>
+    <header>Device Info</header>
+    <pre style="color: blue">{{deviceinfo}}</pre>
+    <header>Values</header>
+    <pre>{{result}}</pre>
+    <header>Error</header>
+    <pre style="color: red">{{err}}</pre>
     <ion-img [src]="imgsrc"></ion-img>
   </section>
-
   <section>
     <header>Capacitor Plugins Test</header>
-    <ion-button expand="full" color="primary" (click)="capacitorGeolocation()">Geolocation</ion-button>
-    <ion-button expand="full" color="primary" (click)="capacitorSplashScreen()">SplashScreen</ion-button>
-    <ion-button expand="full" color="primary" (click)="capacitorPhotoCamera()">Photo Camera</ion-button>
-    <ion-button expand="full" color="primary" (click)="capacitorPhotoGallery()">Photo Gallery</ion-button>
-    <ion-button expand="full" color="primary" (click)="capacitorToast()">Toast</ion-button>
+    <ion-button color="primary" (click)="capacitorGeolocation()">Geolocation</ion-button>
+    <ion-button color="primary" (click)="capacitorSplashScreen()">SplashScreen</ion-button>
+    <ion-button color="primary" (click)="capacitorPhotoPrompt()">Photo Prompt</ion-button>
+    <ion-button color="primary" (click)="capacitorPhotoCamera()">Photo Camera</ion-button>
+    <ion-button color="primary" (click)="capacitorPhotoGallery()">Photo Gallery</ion-button>
+    <ion-button color="primary" (click)="capacitorToast()">Toast</ion-button>
   </section>
   <section>
     <header>Cordova Plugins Test</header>
-    <ion-button expand="full" color="warning" (click)="cordovaCallNumber()">CallNumber</ion-button>
+    <ion-button color="warning" (click)="cordovaCallNumber()">CallNumber</ion-button>
   </section>
   <section>
     <header>Angular Plugins Test</header>
-    <ion-button expand="full" color="secondary" (click)="angularToast()">Toast</ion-button>
-    <ion-button expand="full" color="secondary" (click)="angularAlert()">Alert</ion-button>
+    <ion-button color="secondary" (click)="angularToast()">Toast</ion-button>
+    <ion-button color="secondary" (click)="angularAlert()">Alert</ion-button>
+  </section>
+  <section>
+    <header>Other tests</header>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          <a href="mailto:test@email.com">mailto:test@email.com</a>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <a href="tel:+5513900000000">tel:+5513900000000</a>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <a href="tel://+5513900000000">tel://+5513900000000</a>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <a href="https://www.google.com">https://www.google.com</a>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <a href="https://www.google.com" target="_blank">https://www.google.com target _blank</a>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <a href="https://www.google.com" target="_window">https://www.google.com target _window</a>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </section>
 </ion-content>
