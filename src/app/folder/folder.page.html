@@ -14,8 +14,31 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <section>
+  <pre>
+  result
+  </pre>
+  <pre style="color: red">
+  err
+  </pre>
+    <ion-img [src]="imgsrc"></ion-img>
+  </section>
+
+  <section>
+    <header>Capacitor Plugins Test</header>
+    <ion-button expand="full" color="primary" (click)="capacitorGeolocation()">Geolocation</ion-button>
+    <ion-button expand="full" color="primary" (click)="capacitorSplashScreen()">SplashScreen</ion-button>
+    <ion-button expand="full" color="primary" (click)="capacitorPhotoCamera()">Photo Camera</ion-button>
+    <ion-button expand="full" color="primary" (click)="capacitorPhotoGallery()">Photo Gallery</ion-button>
+    <ion-button expand="full" color="primary" (click)="capacitorToast()">Toast</ion-button>
+  </section>
+  <section>
+    <header>Cordova Plugins Test</header>
+    <ion-button expand="full" color="warning" (click)="cordovaCallNumber()">CallNumber</ion-button>
+  </section>
+  <section>
+    <header>Angular Plugins Test</header>
+    <ion-button expand="full" color="secondary" (click)="angularToast()">Toast</ion-button>
+    <ion-button expand="full" color="secondary" (click)="angularAlert()">Alert</ion-button>
+  </section>
 </ion-content>
