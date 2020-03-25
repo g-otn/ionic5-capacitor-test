@@ -13,7 +13,7 @@ export class FolderPage implements OnInit {
   public folder: string;
   public imgsrc: string;
   public result: string;
-  public err: string;
+  public errpre: string;
   public deviceinfo: string;
 
   constructor(
@@ -30,6 +30,7 @@ export class FolderPage implements OnInit {
     Plugins.Device.getInfo().then(deviceInfo => {
       this.deviceinfo = this.json(deviceInfo);
     })
+    .catch(err => this.error(err));
   }
 
   capacitorGeolocation() {
@@ -43,8 +44,9 @@ export class FolderPage implements OnInit {
           .then(value => {
             this.result += this.json(value);
           })
+          .catch(err => this.error(err));
       })
-      .catch(reason => this.err = this.json(reason));
+      .catch(err => this.error(err));
   }
 
   capacitorSplashScreen() {
@@ -62,10 +64,11 @@ export class FolderPage implements OnInit {
           quality: 10
         })
           .then(value => {
-            this.imgsrc = value.dataUrl
+            this.imgsrc = value.dataUrl;
           })
+          .catch(err => this.error(err));
       })
-      .catch(reason => this.err = this.json(reason));
+      .catch(err => this.error(err));
   }
 
   capacitorPhotoGallery() {
@@ -79,10 +82,11 @@ export class FolderPage implements OnInit {
           quality: 10
         })
           .then(value => {
-            this.imgsrc = value.dataUrl
+            this.imgsrc = value.dataUrl;
           })
+          .catch(err => this.error(err));
       })
-      .catch(reason => this.err = this.json(reason));
+      .catch(err => this.error(err));
   }
 
   capacitorPhotoCamera() {
@@ -96,10 +100,11 @@ export class FolderPage implements OnInit {
           quality: 10
         })
           .then(value => {
-            this.imgsrc = value.dataUrl
-          });
+            this.imgsrc = value.dataUrl;
+          })
+          .catch(err => this.error(err));
       })
-      .catch(reason => this.err = this.json(reason));
+      .catch(err => this.error(err));
   }
 
   capacitorToast() {
@@ -108,13 +113,24 @@ export class FolderPage implements OnInit {
       duration: 'long',
       position: 'center'
     })
+    .catch(err => this.error(err));
   }
 
   capacitorAlert() {
     Plugins.PushNotifications.requestPermissions()
       .then(value => {
         this.result = this.json(value);
-      });
+        Plugins.PushNotifications.createChannel({
+          id: 'test',
+          description: 'description',
+          importance: 2,
+          name: 'name',
+          sound: '',
+          visibility: 1
+        })
+        .catch(err => this.error(err));
+      })
+      .catch(err => this.error(err));
   }
 
   cordovaCallNumber(bypass = true) {
@@ -141,8 +157,13 @@ export class FolderPage implements OnInit {
   }
 
   json(value) {
-    console.info(value);
+    console.log(value);
     return JSON.stringify(typeof value !== 'object' ? String(value) : value, null, '   ');
+  }
+
+  error(err) {
+    console.warn(err);
+    this.errpre = `${err}\n\nStack:\n${Error().stack}`;
   }
 
 }
